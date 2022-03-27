@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Thyrocare Ltd.</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+                 <form action="/">
+              <button class="btn btn-danger mx-2">HOMEPAGE</button>
+            </form>
+            </li>
+            <li class="nav-item">
+              <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+                 <form action="/showlist">
+                   <button class="btn btn-success mx-3 w-100">Register List</button>
+                 </form>
+            </li>
+            <li class="nav-item">
+              <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+                 <form action="/search">
+                   <button class="btn btn-warning mx-3 w-100">Clear List</button>
+                 </form>
+            </li>
+
+             <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li> -->
+             <p class="text-danger fs-4 me-5 ">&nbsp &nbsp &nbsp &nbsp BLOOD REPORT SEARCH &nbsp &nbsp &nbsp &nbsp</p>
+            <form class="d-flex mx-3 " action="/searchname" method="post">
+  <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+  <!-- <label for="contr" style="font-family:'Courier New'">THIRDPARY VENDOR</label> -->
+  <select id="inputState" class="form-select " name="contr" required>
+    <option value=""> Search By contractor</option>
+    {% for x in contr %}
+    <option value="{{x["name"]}}">{{x["name"]}}</option>
+    <!-- <option value="22">22</option>
+    <option value="23">23</option>
+    <option value="24">24</option>
+    <option value="25">25</option> -->
+    {% endfor %}
+  </select>
+  <button class="btn btn-outline-success mx-1 w-100" type="submit">Search</button>
+</form>
+
+<form class="d-flex " action="/searchname" method="post">
+<select id="inputState" class="form-select " name="contr" required>
+<option value=""> Search By Age</option>
+<option value="6|6">1 year - 6 Year</option>
+<option value="10|18">10 year - 18 year</option>
+<option value="18|44">19 year - 44 year</option>
+<option value="44-100">45 year - 100 year</option>
+
+</select>
+<button class="btn btn-outline-success mx-1 " type="submit">Search</button>
+</form>
+            <li class="nav-item">
+   <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" class="text-danger">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp BLOOD REPORT REGISTRATION FORM</a> -->
+
+            </li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<CENTER>
+
+
+<!-- <div class="container-fluid">
+<form action="/">
+  <input type="submit" value="HOMEPAGE" >
+</form>
+
+<form action="/search">
+  <input type="submit" value="Search" >
+</form> -->
+</div>
+<!-- <form action="/search">
+  <input type="submit" value="Search" >
+</form> -->
+
+<table class="table table-hover">
+  <tr>
+    <td style="background-color: #92a8d1" class="fs-4">
+      <center>
+{% for x in count %}
+<h5>Total No of Documents: {{x["total_doc"]}}</h5>
+{% endfor %}
+</center>
+</td>
+<td style="background-color: #92a8d1" class="fs-4">
+  <center>
+{% for x in cost %}
+<h5>Total Cost : {{x["totalcost"]}}</h5>
+{% endfor %}</center>
+</td>
+</tr>
+</table>
+<!-- {% for x in cost %} -->
+<table ><tr><td style="background-color: #33FFC7" ><center>
+<h4>Filter Result Record: {{numdoc}}</h4></center></td>
+<td style="background-color: #33FFC7" ><center><h4>Filter Resultcost : {{f_cost}}</center></h4></td>
+<!-- {% endfor %} -->
+<!-- <form action="/searchname" method="post"> -->
+
+<!-- <label for="contr" style="font-family:'Courier New'">THIRDPARY VENDOR</label>
+<select name="contr" required>
+  <option value="">select Name List</option>
+  {% for x in contr %}
+  <option value="{{x["name"]}}">{{x["name"]}}</option> -->
+  <!-- <option value="22">22</option>
+  <option value="23">23</option>
+  <option value="24">24</option>
+  <option value="25">25</option> -->
+  <!-- {% endfor %}
+</select>
+<input type="submit" value="Search Name">
+</form>
+<hr> -->
+
+
+</CENTER>
+<table class="table  table-hover">
+  <tr>
+    <th class="text-warning bg-dark">Customer ID</th>
+    <th class="text-warning bg-dark">First Name</th>
+    <th class="text-warning bg-dark">Last Name</th>
+    <th class="text-warning bg-dark">Gender</th>
+    <th class="text-warning bg-dark">Age</th>
+    <th class="text-warning bg-dark">Vendor</th>
+    <th class="text-warning bg-dark">Test Name</th>
+    <th class="text-warning bg-dark">Test Price</th>
+    <th class="text-warning bg-dark">Update</th>
+    <th class="text-warning bg-dark">Delete</th>
+  </tr>
+  {% for x in record %}
+  <tr>
+    <td>{{x["cid"]  | title}}</td>
+    <td>{{x["first_name"] | title}}</td>
+    <td>{{x["last_name"] | title}}</td>
+    <td>{{x["gender"] | title}}</td>
+    <td>{{x["age"] | title}}</td>
+    <td>{{x["contr"] | title}}</td>
+    <td>{{x["test_name"] | title}}</td>
+    <td>Rs. {{x["test_price"] | title}} /-</td>
+    <td>  <form action="#" method="get">
+      <button class="btn btn-primary mx-2">Update</button>
+    </form></td>
+    <td>
+      <form action="/del/{{x["cid"]}}/{{x["contr"]}}/" method="post">
+      <button class="btn btn-danger mx-2">Delete</button>
+    </form>
+    </td>
+  </tr>
+{% endfor %}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>show List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Thyrocare Ltd.</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+            <form action="/" method="get">
+            <button class="btn btn-danger mx-2">HOMEPAGE</button>
+          </form>
+          </li>
+
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+            <form action="/search" method="get">
+            <button class="btn btn-success mx-2">Search</button>
+          </form>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+            <form action="/showlist" method="get">
+            <button class="btn btn-warning mx-2">Refresh</button>
+          </form>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> -->
+          <li class="nav-item">
+ <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" class="text-danger">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp BLOOD REPORT REGISTRATION FORM</a> -->
+ <p class="text-danger fs-4">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp REGISTER CUSTOMER'S BLOOD TEST LIST </p>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+<!-- <CENTER>
+<h2>REGISTER CUSTOMER FOR BLOOD TEST</h2>
+<hr>
+<form action="/">
+  <input type="submit" value="HOMEPAGE" >
+</form>
+
+<form action="/search">
+  <input type="submit" value="Search" >
+</form>
+<hr>
+</CENTER> -->
+<table>
+  <tr>
+    <th class="text-warning bg-dark">Customer ID</th>
+    <th class="text-warning bg-dark">First Name</th>
+    <th class="text-warning bg-dark">Last Name</th>
+    <th class="text-warning bg-dark">Gender</th>
+    <th class="text-warning bg-dark">Age</th>
+    <th class="text-warning bg-dark">Vendor</th>
+    <th class="text-warning bg-dark">Test Name</th>
+    <th class="text-warning bg-dark">Test price</th>
+    <th class="text-warning bg-dark">Update</th>
+    <th class="text-warning bg-dark">Delete</th>
+  </tr>
+  {% for x in data %}
+  <tr>
+    <td>{{x["cid"]}}</td>
+    <td>{{x["first_name"] | title}}</td>
+    <td>{{x["last_name"] | title}}</td>
+    <td>{{x["gender"] | title}}</td>
+    <td>{{x["age"] | title}}</td>
+    <td>{{x["contr"] | title}}</td>
+    <td>{{x["test_name"] | title}}</td>
+    <td>Rs. {{x["test_price"] | title}} /-</td>
+    <td>  <form action="#" method="get">
+      <button class="btn btn-primary mx-2">Update</button>
+    </form></td>
+    <td>
+      <form action="/delete/{{x["cid"]}}/" method="get">
+      <button class="btn btn-danger mx-2">Delete</button>
+    </form>
+    </td>
+  </tr>
+{% endfor %}
+  <!-- <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr> -->
+</table>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>

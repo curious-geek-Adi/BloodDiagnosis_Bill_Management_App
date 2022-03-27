@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<!-- {% block title_block %} -->
+ <title>Employee Register</title>
+ <!-- {% endblock %} -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+
+  input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+  input[type=number], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+
+
+
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+
+  .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Thyrocare Ltd.</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+            <form action="/" method="get">
+            <button class="btn btn-danger mx-2">HOMEPAGE</button>
+          </form>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+            <form action="/register/{{cid}}/" method="get">
+            <button class="btn btn-success mx-2">Register List</button>
+          </form>
+          </li>
+          <li class="nav-item">
+            <!-- <a class="nav-link active" aria-current="page" href="/register/{{cid}}/">Register List</a> -->
+            <form action="/search" method="get">
+            <button class="btn btn-success mx-2">Search</button>
+          </form>
+          </li>
+          <li class="nav-item">
+            <form action="/" method="get">
+            <button class="btn btn-warning mx-2">Refresh</button>
+          </form>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> -->
+          <li class="nav-item">
+ <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" class="text-danger">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp BLOOD REPORT REGISTRATION FORM</a> -->
+ <p class="text-danger fs-4">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp BLOOD REPORT REGISTRATION FORM</p>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+  <div class="container">
+
+    <center>
+    <table>
+    <thead>
+      <div class="containertext-white border bg-dark text-white">
+        <center>
+
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+     {% for category, message in messages %}
+
+     <!-- <div class="alert alert-success" role="alert"> -->
+     <!-- <h3>Message Category"""" {{category}} """"" </h3> -->
+    <p class=" fs-6 text-warnig bg-dark" style="font-family:'Courier New'" id="welcome"> {{message}}</p>
+    <!-- </div> -->
+      {% endfor %}
+  {% endif %}
+  {% endwith %}
+</center>
+</div></thead></div>
+
+      <h4>Fill Candidate Details Carefully</h4>
+
+
+<div class="container">
+  <form method='post' action="/register/{{cid}}/">
+
+    <div class="row">
+      <div class="col-25">
+        <label for="cid">CLIENT-ID</label>
+      </div>
+      <div class="col-75">
+        <!-- <input type="text" id="fname" name="cid" placeholder="1234" disabled> -->
+        <input type='number' name="cid" value="{{cid}}" placeholder="{{cid}}" disabled>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="age">Age</label>
+      </div>
+      <div class="col-75">
+        <!-- <input type="number" id="fname" name="cid" placeholder="1234"> -->
+        <input type='text' id="fname" name="age" placeholder="Enter Your Age" required>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-25">
+        <label for="first">First Name</label>
+      </div>
+      <div class="col-75">
+        <!-- <input type="text" id="fname" name="first" placeholder="Your name.."> -->
+        <input type='text' id="fname" name="first" placeholder="Enter Your First Name" required>
+      </div>
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="col-25">
+        <label for="last">Last Name</label>
+      </div>
+      <div class="col-75">
+        <!-- <input type="text" id="lname" name="lastname" placeholder="Your last name.."> -->
+        <input type='text' id="lname" name="last" placeholder="Enter Your Last Name" required>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-25">
+        <label for="gender">Gender</label>
+      </div>
+      <div class="col-75">
+        <select id="country" name="gender">
+          <option value="">Select Your Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-25">
+        <!-- <label for="country"></label> -->
+        <label for="test_name" >BLOODTEST NAME & Price</label>
+      </div>
+      <div class="col-75">
+        <!-- <select id="country" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option> -->
+          <select id="country" name="test_name" required>
+            <option value="">BLOOD TEST NAME & PRICE</option>
+            {% for x in msg %}
+            <option value="{{x["name"]}}|{{x["price"]}}">{{x["name"]}},  {{x["price"]}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-25">
+        <!-- <label for="country">Country</label> -->
+        <label for="contr">THIRDPARY VENDOR</label>
+      </div>
+      <div class="col-75">
+        <!-- <select id="country" name="country">
+          <option value="australia">Australia</option>
+          <option value="canada">Canada</option>
+          <option value="usa">USA</option> -->
+          <select id="country" name="contr" required>
+            <option value="">contractor Names</option>
+            {% for x in contr %}
+            <option value="{{x["name"]}}|{{x["mid"]}}">{{x["name"]}}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="col-25">
+        <label for="subject">Subject</label>
+      </div>
+      <div class="col-75">
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      </div>
+    </div> -->
+    <div class="container-fluid">&nbsp &nbsp </div>
+
+    <div class="row">
+      <input type="submit" value="Register">
+
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+   <script>
+   setTimeout(function(){$('#welcome').fadeout('fast');},3000);
+   </script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+   <script>
+       function delete_flash(flash){
+           $(flash).parent().remove()
+       } -->
+   </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  </body>
+  </html>
